@@ -34,7 +34,7 @@ export default function ShowPage() {
     return (
         <>
             <h2 className="text-warning my-4">FILMS</h2>
-            <div className="row row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-3">
+            <div className="row row-cols-sm-2 row-cols-lg-3 row-cols-xxl-4 g-3">
                 {films &&
                     films.map((film) => {
                         const vote = Math.round(film.vote_average / 2);
@@ -45,8 +45,10 @@ export default function ShowPage() {
                                     <img
                                         className="images"
                                         src={
-                                            "https://image.tmdb.org/t/p/w342" +
                                             film.poster_path
+                                                ? "https://image.tmdb.org/t/p/w342" +
+                                                  film.poster_path
+                                                : ""
                                         }
                                         alt={film.title}
                                     />
@@ -83,14 +85,14 @@ export default function ShowPage() {
                     })}
             </div>
             <h2 className="text-warning my-4">TV SERIES</h2>
-            <div className="row row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-3">
+            <div className="row row-cols-sm-2 row-cols-lg-3 row-cols-xxl-4 g-3">
                 {tv &&
                     tv.map((film) => {
                         const vote = Math.round(film.vote_average / 2);
 
                         return (
                             <div key={film.id} className="col">
-                                <div className="card h-100">
+                                <div className="card h-100 justify-content-center">
                                     <img
                                         className="images"
                                         src={

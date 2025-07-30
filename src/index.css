@@ -9,8 +9,7 @@ header {
 .card {
     background-color: black;
     max-height: 513px;
-    max-width: 342px;
-    overflow-y: auto;
+    position: relative;
 }
 
 .images {
@@ -21,6 +20,11 @@ header {
 .card-body {
     color: white;
     display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    overflow: auto;
 }
 
 .card:hover {
