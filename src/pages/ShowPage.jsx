@@ -2,6 +2,7 @@ import { useMediaContext } from "../context/MediaContext";
 
 export default function ShowPage() {
     const { films, tv } = useMediaContext();
+
     const getCountryFlag = (code) => {
         if (code === "en") {
             return "gb";
@@ -13,19 +14,39 @@ export default function ShowPage() {
             return code;
         }
     };
+
+    const renderStars = (vote) => {
+        const stars = [];
+        for (let i = 1; i <= 5; i++) {
+            if (i <= vote) {
+                stars.push(
+                    <i key={i} className="fa-solid fa-star text-warning"></i>
+                );
+            } else {
+                stars.push(
+                    <i key={i} className="fa-regular fa-star text-warning"></i>
+                );
+            }
+        }
+        return stars;
+    };
+
     return (
         <>
             <h2 className="text-warning my-4">FILMS</h2>
-            <div className="row row-cols-3 g-3">
+            <div className="row row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-3">
                 {films &&
                     films.map((film) => {
+                        const vote = Math.round(film.vote_average / 2);
+
                         return (
                             <div key={film.id} className="col">
-                                <div className="card h-100">
+                                <div className="card h-100 justify-content-center">
                                     <img
+                                        className="images"
                                         src={
                                             "https://image.tmdb.org/t/p/w342" +
-                                            film.backdrop_path
+                                            film.poster_path
                                         }
                                         alt={film.title}
                                     />
@@ -51,8 +72,10 @@ export default function ShowPage() {
                                             />
                                         </p>
                                         <p>
-                                            Voto: {film.vote_average.toFixed(1)}
+                                            Vote: {renderStars(vote)}(
+                                            {film.vote_count})
                                         </p>
+                                        <p>Description: {film.overview}</p>
                                     </div>
                                 </div>
                             </div>
@@ -60,16 +83,19 @@ export default function ShowPage() {
                     })}
             </div>
             <h2 className="text-warning my-4">TV SERIES</h2>
-            <div className="row row-cols-3 g-3">
+            <div className="row row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-3">
                 {tv &&
                     tv.map((film) => {
+                        const vote = Math.round(film.vote_average / 2);
+
                         return (
                             <div key={film.id} className="col">
                                 <div className="card h-100">
                                     <img
+                                        className="images"
                                         src={
                                             "https://image.tmdb.org/t/p/w342" +
-                                            film.backdrop_path
+                                            film.poster_path
                                         }
                                         alt={film.name}
                                     />
@@ -94,8 +120,10 @@ export default function ShowPage() {
                                             />
                                         </p>
                                         <p>
-                                            Voto: {film.vote_average.toFixed(1)}
+                                            Vote: {renderStars(vote)} (
+                                            {film.vote_count})
                                         </p>
+                                        <p>Description: {film.overview}</p>
                                     </div>
                                 </div>
                             </div>

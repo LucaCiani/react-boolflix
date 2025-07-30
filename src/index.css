@@ -5,3 +5,29 @@ body {
 header {
     background-color: black;
 }
+
+.card {
+    background-color: black;
+    max-height: 513px;
+    max-width: 342px;
+    overflow-y: auto;
+}
+
+.images {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.card-body {
+    color: white;
+    display: none;
+}
+
+.card:hover {
+    .images {
+        display: none;
+    }
+    .card-body {
+        display: block;
+    }
+}
