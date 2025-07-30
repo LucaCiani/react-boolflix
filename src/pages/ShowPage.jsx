@@ -48,7 +48,7 @@ export default function ShowPage() {
                                             film.poster_path
                                                 ? "https://image.tmdb.org/t/p/w342" +
                                                   film.poster_path
-                                                : ""
+                                                : "/dancingDwarf.png"
                                         }
                                         alt={film.title}
                                     />
@@ -96,8 +96,10 @@ export default function ShowPage() {
                                     <img
                                         className="images"
                                         src={
-                                            "https://image.tmdb.org/t/p/w342" +
                                             film.poster_path
+                                                ? "https://image.tmdb.org/t/p/w342" +
+                                                  film.poster_path
+                                                : "/dancingDwarf.png"
                                         }
                                         alt={film.name}
                                     />
