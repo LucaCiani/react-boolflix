@@ -4,21 +4,17 @@ const MediaContext = createContext();
 
 function MediaProvider({ children }) {
     const apiKey = import.meta.env.VITE_API_KEY;
-    const apiUrl = import.meta.env.VITE_API_URL;
+    const apiFilmUrl = import.meta.env.VITE_API_URL;
 
-    const [media, setMedia] = useState(null);
-    const [alert, setAlert] = useState({
-        type: "info",
-        message: null,
-    });
+    const [media, setMedia] = useState([]);
 
     return (
         <MediaContext.Provider
             value={{
                 media,
                 setMedia,
-                alert,
-                setAlert,
+                apiKey,
+                apiFilmUrl,
             }}
         >
             {children}
